@@ -24,12 +24,14 @@ export class Pokemon {
         console.log(`${ this.name }, ${ this.name }`);
     }
 
+    // La función getMoves() retorna una promesa de un arreglo de Move
     async getMoves(): Promise<Move[]> {
         
         // const moves = 10;
 
+        // data de tipo interface PokeapiResponse o generica de PokeapiResponse
         const { data } = await axios.get<PokeapiResponse>(`https://pokeapi.co/api/v2/pokemon/4`);
-        console.log(data.moves);
+        console.log( data.moves );
 
         return data.moves;
     }

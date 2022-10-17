@@ -10,7 +10,8 @@ export class Pokemon {
     constructor(
         public readonly id: number, 
         public name: string,
-        // Todo: inyectar dependencias en clases
+        // Todo: inyectar dependencias en clases, siempre en constructor
+        // HttpAdapter viene de la interface que implementa axios o fetch asi ppdemos usar una o otra segun Liskov
         private readonly http: HttpAdapter,
     ) {}
 
@@ -31,9 +32,10 @@ export class Pokemon {
 
 }
 
+// Por Liskov podemos instaciar la clase fetch o axios sin errores
 const pokeApiAxios = new PokeApiAdapter();
 const pokeApiFetch = new PokeApiFetchAdapter();
 
-export const charmander = new Pokemon( 4, 'Charmander', pokeApiFetch );
+export const charmander = new Pokemon( 4, 'Charmander', pokeApiAxios );
 
 charmander.getMoves();
